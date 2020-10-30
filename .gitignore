@@ -5,7 +5,9 @@ data/*
 *.so
 
 .ipynb_checkpoints
+__pycache__
 notebooks/*.pkl
+data
 
 /outputs
 network/weight

@@ -18,20 +18,20 @@ from lib.config import cfg, update_config
 from lib.utils.common import Human, BodyPart, CocoPart, CocoColors, CocoPairsRender, draw_humans
 from lib.utils.paf_to_pose import paf_to_pose_cpp
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--cfg', help='experiment configure file name',
+                        default='./experiments/vgg19_368x368_sgd.yaml', type=str)
+    parser.add_argument('--weight', type=str,
+                        default='../ckpts/openpose.pth')
+    parser.add_argument('opts',
+                        help="Modify config options using the command-line",
+                        default=None,
+                        nargs=argparse.REMAINDER)
+    args = parser.parse_args()
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--cfg', help='experiment configure file name',
-                    default='./experiments/vgg19_368x368_sgd.yaml', type=str)
-parser.add_argument('--weight', type=str,
-                    default='../ckpts/openpose.pth')
-parser.add_argument('opts',
-                    help="Modify config options using the command-line",
-                    default=None,
-                    nargs=argparse.REMAINDER)
-args = parser.parse_args()
-
-# update config file
-update_config(cfg, args)
+    # update config file
+    update_config(cfg, args)
 
 
 '''
