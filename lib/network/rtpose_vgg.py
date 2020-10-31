@@ -10,6 +10,7 @@ import torch.utils.model_zoo as model_zoo
 from torch.autograd import Variable
 from torch.nn import init
 
+
 def make_stages(cfg_dict):
     """Builds CPM stages from a dictionary
     Args:
@@ -130,6 +131,7 @@ def get_model(trunk='vgg19'):
 
     if trunk == 'vgg19':
         print("Bulding VGG19")
+       
         models['block0'] = make_vgg19_block(block0)
 
     for k, v in blocks.items():
@@ -222,6 +224,8 @@ def get_model(trunk='vgg19'):
             init.normal_(self.model6_2[12].weight, std=0.01)
 
     model = rtpose_model(models)
+    
+    print("Done !")
     return model
 
 
