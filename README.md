@@ -4,7 +4,7 @@ Multi Person PoseEstimation By PyTorch, based on [pytorch_Realtime_Multi-Person_
 ## Results
 
 <p align="left">
-<img src="https://github.com/Johansmm/RT-multiperson-pose-pytorch/tree/imt-atlantique/readme/result.gif", width="720">
+<img src="https://github.com/Johansmm/RT-multiperson-pose-pytorch/blob/imt-atlantique/readme/result.gif", width="720">
 </p>
 
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT) 
