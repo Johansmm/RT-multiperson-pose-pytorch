@@ -1,10 +1,23 @@
 
+import numpy as np
+import matplotlib.pyplot as plt
+import io
+import cv2
 
 #from matplotlib import colors
 
+def get_img_from_fig(fig, dpi=180):
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", dpi=dpi)
+    buf.seek(0)
+    img_arr = np.frombuffer(buf.getvalue(), dtype=np.uint8)
+    buf.close()
+    img = cv2.imdecode(img_arr, 1)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-def Heatmapgraph(img,heatmap,id_heat,plt,np):
+    return img
 
+def Heatmapgraph(img,heatmap,id_heat):
 
   cmap='rainbow'
   interpolation='bicubic'
@@ -24,9 +37,11 @@ def Heatmapgraph(img,heatmap,id_heat,plt,np):
   axs.imshow(ImagMap, cmap=cmap, interpolation=interpolation,alpha=alpha,extent=(xmin,xmax,ymin,ymax))
   plt.grid(b=False)
   plt.axis('off')
-  plt.show()
+  fig.show()
 
-def graphPAF(img,paf,id_paf,plt,np):
+  return get_img_from_fig(fig)
+
+def graphPAF(img,paf,id_paf):
   
   out_paf = np.zeros([paf.shape[2], img.shape[0], img.shape[1]])
 
@@ -42,8 +57,9 @@ def graphPAF(img,paf,id_paf,plt,np):
   ax.set_xticklabels([]); ax.set_yticklabels([])
   ax.set_xticks([]); ax.set_yticks([])
   fig.show()
+  return get_img_from_fig(fig)
 
-def graphGridHeatmap(img,Grahp,heatmap,plt,colors):
+def graphGridHeatmap(img,Grahp,heatmap,colors):
   Nr = 2
   Nc = 3
   
@@ -83,8 +99,9 @@ def graphGridHeatmap(img,Grahp,heatmap,plt,colors):
   plt.grid(b=False)
   plt.axis('off')
   plt.show()
+  return get_img_from_fig(fig)
 
-def graphGridPaf(img,paf,paf_view,plt,np,cv2):
+def graphGridPaf(img,paf,paf_view):
 
   out_paf = np.zeros([paf.shape[2], img.shape[0], img.shape[1]])
 
@@ -105,3 +122,4 @@ def graphGridPaf(img,paf,paf_view,plt,np,cv2):
   fig.subplots_adjust(wspace=0.0,hspace=0.0)
   fig.suptitle("Part Affinity Fields", fontsize=16)
   fig.show()
+  return get_img_from_fig(fig)
